@@ -6,15 +6,23 @@
 	"installed_packages":
 	[
 		"Alignment",
+		"AngularJS",
 		"BracketHighlighter",
+		"CodeIgniter Utilities",
+		"Color Highlighter",
 		"DocBlockr",
+		"Git",
+		"Goto-CSS-Declaration",
 		"JsFormat",
 		"Markdown Extended",
 		"Markdown Preview",
 		"MarkdownEditing",
 		"MarkdownHighlighting",
 		"Package Control",
+		"SideBarEnhancements",
 		"SublimeCodeIntel",
+		"SublimeLinter",
+		"Sublimerge 3",
 		"View In Browser"
 	]
 }
