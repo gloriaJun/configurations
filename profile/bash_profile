@@ -19,14 +19,8 @@ export GREP_OPTIONS="--color=auto"
 export PS1="[\D{%T}] \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n\$ "
 
 #---------------------------
-# PATH 
+# PATH
 #---------------------------
-export PATH="/usr/local/bin:$PATH"
-
-##### python
-export PATH=$HOME/.pyenv/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 #---------------------------
 # Alias
@@ -35,3 +29,8 @@ alias ll="ls -al"
 
 # for git
 alias gl='git log --pretty=format:"%h %ad %cn %s"  --graph --name-status'
+
+# for other
+#export MYDATA_DIR="~/data"
+#alias cdst="cd $MYDATA_DIR/study"
+#alias cdpj="cd $MYDATA_DIR/project"
