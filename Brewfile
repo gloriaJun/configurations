@@ -25,7 +25,6 @@ brew "autojump"
 # App Store
 #######################
 
-mas "Xcode", id: 497799835
 mas "LINE", id: 539883307
 mas "KakaoTalk", id: 869223134
 mas "Slack", id: 803453959
