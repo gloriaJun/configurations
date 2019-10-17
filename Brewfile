@@ -40,3 +40,10 @@ cask "itsycal"
 cask "iterm2"
 cask "android-platform-tools"
 cask "jetbrains-toolbox"
+
+#######################
+# Font
+#######################
+
+cask 'homebrew/cask-fonts/font-meslo-lg'
+cask 'homebrew/cask-fonts/font-meslo-for-powerline'
