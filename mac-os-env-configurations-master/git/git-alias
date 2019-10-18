@@ -1,0 +1,63 @@
+[alias]
+	alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
+
+# basic
+	st = status
+	sync = fetch --all --prune
+	sync2 = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+
+# log
+	lg = log --color --graph --date=short --decorate=short --pretty=format:'%C(white)%h%Creset %C(blue)%cn%Creset %C(green)%cd%Creset %C(red reverse)%d%Creset %C(reset)%s' --all
+	ls = !git lg | fzf -m --ansi --layout=reverse --preview=\"echo {} | sed 's/-.*$//' | egrep -o '[0-9a-f]+' | xargs git show --color=always\" | sed 's/-.*$//' | egrep -o '[0-9a-f]+'
+	lga = log --all --branches --graph --decorate --oneline
+
+# diff
+	di = "!f() { args=$@; [ -z \"$args\" ] && args=HEAD; ([ \"$args\" = \"HEAD\" ] && git status --short || git diff --name-status $args | sed 's/\t/  /') | fzf --preview \"echo {} | cut -c 4- | xargs git diff --color=always $args --\" --multi --height 90% | cut -c 4-; }; f"
+
+# commit
+	ci = commit
+	ca = !git add $(git status -s | fzf -m | awk '{print $2}')
+
+# stash
+	stl = !git stash list | fzf --preview 'echo {} | cut -d: -f1 | xargs git stash show -p --color=always' --height 90% | cut -d: -f1
+  	sta = !git stl | xargs git stash apply
+  	std = !git stl | xargs git stash drop
+
+# branch
+	dev = checkout develop
+	b0 = !git rev-parse --abbrev-ref HEAD
+	back = !git branch backup-`git b0`
+	co = !git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')
+	cob = checkout -b
+	br = "!git branch -a | cat"
+	br-clean = "!git branch --merged develop | grep -v '^*' | xargs -n 1 git branch -d"
+	#cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
+	publish = "!git push -u origin $(git branch-name)"
+	bb = "! # Branch tools. Type 'git bb help' ; \n\
+        f() { \n\
+            if [ $# = 0 ]; then \
+                git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}'); \
+            elif [ $1 = 'help' ]; then \
+                echo 'git bb           : Select and checkout branch'; \
+                echo 'git bb c, clean  : Clean all merged branches'; \
+                echo 'git bb d, D      : Delete seleted branches(D: force)'; \
+                echo 'git bb l, list   : List branches excluding the current branch'; \
+                echo 'git bb m, merged : List merged branches excluding the current and master branches'; \
+            elif [ $1 = 'd' -o $1 = 'D' ]; then \
+                git branch -$1 $(git bb list | fzf -m); \
+            elif [ $1 = 'clean' -o $1 = 'c' ]; then \
+                git branch -d $(git bb merged); \
+            elif [ $1 = 'list' -o $1 = 'l' ]; then \
+                git branch | grep -v '^\\*'; \
+            elif [ $1 = 'merged' -o $1 = 'm' ]; then \
+                git branch --merged | grep -v '^\\*\\|\\<master$'; \
+            else \
+                git bb help; \
+            fi; \
+        }; f"
+
+# cherry-pick
+	cp = cherry-pick
+	cpn = cherry-pick -n
+	pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
