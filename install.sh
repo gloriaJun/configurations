@@ -34,3 +34,6 @@ _install xcode
 
 # install xcode
 _install xcode
+
+# install git
+_install git
