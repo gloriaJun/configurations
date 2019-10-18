@@ -37,3 +37,6 @@ _install xcode
 
 # install git
 _install git
+
+# install git
+_install vim
