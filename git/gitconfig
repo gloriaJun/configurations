@@ -1,7 +1,7 @@
 [user]
 	name = gloriaJun
 	email = pureainu@gmail.com
-[includelf "gitdir:/Volumes/data/trabajo/"]
+[includeIf "gitdir:/Volumes/data/trabajo/"]
 	path = .gitconfig-work
 [alias]
 	alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
