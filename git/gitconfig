@@ -10,6 +10,7 @@
 	st = status
 	sync = fetch --all --prune
 	sync2 = "!f() { git fetch $1 && git reset --hard $1/$(git b0); }; f"
+	devsync = "!git sync;git merge upstream/develop"
 
 # log
 	lg = log --color --graph --date=short --decorate=short --pretty=format:'%C(white)%h%Creset %C(blue)%cn%Creset %C(green)%cd%Creset %C(red reverse)%d%Creset %C(reset)%s' --all
@@ -32,11 +33,9 @@
 	dev = checkout develop
 	b0 = !git rev-parse --abbrev-ref HEAD
 	back = !git branch backup-`git b0`
-	co = !git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')
-	cob = checkout -b
+	ch = !git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')
+	chb = checkout -b
 	br = "!git branch -a | cat"
-	br-clean = "!git branch --merged develop | grep -v '^*' | xargs -n 1 git branch -d"
-	#cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
 	publish = "!git push -u origin $(git branch-name)"
 	bb = "! # Branch tools. Type 'git bb help' ; \n\
         f() { \n\
