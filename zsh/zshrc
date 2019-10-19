@@ -7,11 +7,12 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "lib/completion",   from:oh-my-zsh
 zplug 'lib/key-bindings', from:oh-my-zsh
 zplug "lib/directories",  from:oh-my-zsh
+zplug "plugins/fasd", from:oh-my-zsh
 
-zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 
-zplug 'dracula/zsh', as:theme
+zplug 'romkatv/powerlevel10k', as:theme, depth:1
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -23,3 +24,12 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# To cutomize prompt
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
