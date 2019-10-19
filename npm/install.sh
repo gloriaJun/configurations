@@ -1,0 +1,1 @@
+yarn -g install npx
