@@ -1,4 +1,4 @@
 # !/bin/sh
 
-cp gitconfig ~/.gitconfig
-cp gitconfig-work ~/.gitconfig-work
+cp ./git/gitconfig ~/.gitconfig
+cp ./git/gitconfig-work ~/.gitconfig-work

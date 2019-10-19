@@ -29,19 +29,19 @@ function _result() {
 }
 
 ## install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-_result Hombebrew
-
-
-# install via brew
-brew bundle --file=./brew/Brewfile
-_result Brewfile 
-if [ $mode -eq "home" ];then
-	brew bundle --file=./brew/Brewfile_home
-	_result Brewfile_home
-fi
-sh ./openApp.sh
-_result openApp
+#/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#_result Hombebrew
+#
+#
+## install via brew
+#brew bundle --file=./brew/Brewfile
+#_result Brewfile 
+#if [ $mode -eq "home" ];then
+#	brew bundle --file=./brew/Brewfile_home
+#	_result Brewfile_home
+#fi
+#sh ./openApp.sh
+#_result openApp
 
 # configure iterm
 _install iterm2 
