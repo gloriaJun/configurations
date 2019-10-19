@@ -32,12 +32,9 @@
 	dev = checkout develop
 	b0 = !git rev-parse --abbrev-ref HEAD
 	back = !git branch backup-`git b0`
-	co = !git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')
-	cob = checkout -b
+	ch = "!git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')"
+	chb = checkout -b
 	br = "!git branch -a | cat"
-	br-clean = "!git branch --merged develop | grep -v '^*' | xargs -n 1 git branch -d"
-	#cleanbranch = "!git branch -d $(git branch --merged | grep -v '^\\*\\|\\<master$')"
-	publish = "!git push -u origin $(git branch-name)"
 	bb = "! # Branch tools. Type 'git bb help' ; \n\
         f() { \n\
             if [ $# = 0 ]; then \
@@ -53,7 +50,7 @@
             elif [ $1 = 'clean' -o $1 = 'c' ]; then \
                 git branch -d $(git bb merged); \
             elif [ $1 = 'list' -o $1 = 'l' ]; then \
-                git branch | grep -v '^\\*'; \
+                git branch -a | grep -v '^\\*'; \
             elif [ $1 = 'merged' -o $1 = 'm' ]; then \
                 git branch --merged | grep -v '^\\*\\|\\<master$'; \
             else \
