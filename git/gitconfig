@@ -71,7 +71,7 @@
 
         #git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
 	branch-list = "!# List the branches.;\n\
-        git for-each-ref --sort='*objecttype' --sort=-committerdate --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
+        git for-each-ref --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
         | column -ts'|' \
         | sed 's/^ /./'"
           	#git checkout $(git branch -a -vv | grep -v '^\\*' | fzf | awk '{print $1}' | sed -E 's/^remotes\\/(origin|upstream)\\///'); \
