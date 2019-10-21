@@ -24,7 +24,7 @@
         git branch backup-`git b0`"
 
 	# branch sync with remote (ex. git sync upstream)
-	sync = "!f() { git fetch $1 --all --prune && git reset --hard $1/$(git b0); }; f"
+	sync = "!f() { git fetch --all --prune && git reset --hard $1/$(git b0); }; f"
 
 #------------------------
 ## log
