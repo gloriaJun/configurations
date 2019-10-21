@@ -151,3 +151,9 @@
             | cut -d' ' -f1; \
         }; f"
 	stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
+
+#------------------------
+## git-flow
+#------------------------
+	fs = flow feature start
+	fp = flow feature start
