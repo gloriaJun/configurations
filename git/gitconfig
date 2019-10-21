@@ -156,4 +156,4 @@
 ## git-flow
 #------------------------
 	fs = flow feature start
-	fp = flow feature start
+	fp = "!git flow feature publish `git b0`"
