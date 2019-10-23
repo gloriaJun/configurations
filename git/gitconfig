@@ -20,7 +20,7 @@
 	# get current branch name
 	b0 = "!git rev-parse --abbrev-ref HEAD"
 	# backup current branch
-	back = "echo created new branch: backup-`git b0`;\
+	back = "!echo created new branch: backup-`git b0`;\
         git branch backup-`git b0`"
 
 	# branch sync with remote (ex. git sync upstream)
