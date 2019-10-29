@@ -69,16 +69,14 @@
             fi; \
         }; f"
 
-        #git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
 	branch-list = "!# List the branches.;\n\
         git for-each-ref --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
         | column -ts'|' \
         | sed 's/^ /./'"
-          	#git checkout $(git branch -a -vv | grep -v '^\\*' | fzf | awk '{print $1}' | sed -E 's/^remotes\\/(origin|upstream)\\///'); \
     branch-select = "!# Select a branch.;\n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
-            git branch-list | fzf --preview \"git l {2} | head -n $_height\" | awk '{print $2}'; \
+            git branch-list | fzf --preview \"git l {2} | head -n $_height\" | awk '{print $2}' | sed -E 's/^(remotes\\/)?(origin|upstream)\\///'; \
         }; f"
 	branch-merged = "!git branch --merged | grep -v '^\\*\\|\\<master$' | grep -v ^\\*\\|\\<develop$'"
 	branch-clean = "!# Search and delete merged branches.;\n\
@@ -94,6 +92,8 @@
                 fi; \
             fi; \
         done"
+	# checkout branch
+	ch = "!git bb $1"
 
 #------------------------
 ## diff & stage
@@ -156,4 +156,4 @@
 ## git-flow
 #------------------------
 	fs = flow feature start
-	fp = "!git flow feature publish `git b0`"
+	fp = "!git flow feature publish `git b0 | sed -E 's/^feature\\///'`"
