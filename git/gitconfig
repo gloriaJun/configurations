@@ -69,10 +69,12 @@
             fi; \
         }; f"
 
-	branch-list = "!# List the branches.;\n\
+    branch-list = "!# List the branches.;\n\
         git for-each-ref --format='%(HEAD) %(refname:short)|%(committerdate:relative)|%(authorname)' \
         | column -ts'|' \
-        | sed 's/^ /./'"
+        | sed 's/^ /./' \
+        | sed '/^\\.[[:space:]][0-9]/d' \
+        | grep -v '/pr/'"	
     branch-select = "!# Select a branch.;\n\
         f() { \
             _height=$(stty size | awk '{print $1}');\
